@@ -1,0 +1,96 @@
+############################
+# BUILD / COMPILAÇÃO
+############################
+
+# Pastas de build
+bin/
+obj/
+
+# Pastas específicas de configuração de target
+**/net*/        # ex: net10.0, net8.0 etc
+
+############################
+# NUGET / RESTORE
+############################
+
+# Arquivos gerados pelo restore do NuGet
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.g.targets
+project.assets.json
+project.nuget.cache
+
+############################
+# CONFIGURAÇÕES LOCAIS
+############################
+
+# Profiles de execução locais
+Properties/launchSettings.json
+
+# Configs de ambiente (NÃO subir secrets)
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+
+############################
+# VS / EDITOR
+############################
+
+.vs/
+.vscode/
+
+############################
+# SISTEMA OPERACIONAL
+############################
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.DS_Store
+obj/
+
+# Pastas específicas de configuração de target
+**/net*/        # ex: net10.0, net8.0 etc
+
+############################
+# NUGET / RESTORE
+############################
+
+# Arquivos gerados pelo restore do NuGet
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.g.targets
+project.assets.json
+project.nuget.cache
+
+############################
+# CONFIGURAÇÕES LOCAIS
+############################
+
+# Profiles de execução locais
+Properties/launchSettings.json
+
+# Configs de ambiente (NÃO subir secrets)
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+
+############################
+# VS / EDITOR
+############################
+
+.vs/
+.vscode/
+
+############################
+# SISTEMA OPERACIONAL
+############################
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.DS_Store
