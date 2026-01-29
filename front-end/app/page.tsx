@@ -5,7 +5,7 @@ import { DollarSign } from "lucide-react";
 
 export default function Page() {
   return (
-    <main className="sm:ml-14 p-4">
+    <main className="md:ml-64 p-4">
       <section className="grid grid-cols-2 gap-4">
         <Card>
           <CardHeader>
