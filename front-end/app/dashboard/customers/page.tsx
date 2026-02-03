@@ -10,7 +10,7 @@ import { Field } from "@/components/ui/field";
 import { ButtonGroup } from "@/components/ui/button-group";
 
 // PAGES CUSTOM
-import { BreadcrumbCustom } from "@/components/Breadcrumb";
+import { BreadcrumbCustom } from "@/components/breadcrumb";
 import { PaginationCustom } from "@/components/pagination";
 
 import {
