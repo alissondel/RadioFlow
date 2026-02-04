@@ -4,22 +4,18 @@ import { useState } from "react";
 import { Customers } from "./mock";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { Field } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import { ButtonGroup } from "@/components/ui/button-group";
+import type { CustomersData } from "@/interfaces/customers-types";
+
+import { Plus, Funnel, Search } from "lucide-react";
 
 // PAGES CUSTOM
 import { BreadcrumbCustom } from "@/components/breadcrumb";
 import { PaginationCustom } from "@/components/pagination";
-
-import {
-  Plus,
-  Trash,
-  Funnel,
-  Pencil,
-  Search,
-} from "lucide-react";
+import { CustomersTable } from "@/components/dashboard/customers/table";
+import { CustomersModal } from "@/components/dashboard/customers/modal";
 
 import {
   Card,
@@ -30,18 +26,11 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-import {
-  Table,
-  TableRow,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-} from "@/components/ui/table";
-
 export default function CustomersPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<CustomersData | null>(null);
 
   // BEGIN PAGINATION
   const [page, setPage] = useState(1);
@@ -56,19 +45,40 @@ export default function CustomersPage() {
   const currentItems = Customers.slice(start, end);
   // END PAGINATION
 
+  const handleNewCustomer = () => {
+    setSelectedItem(null);    // novo cadastro
+    setModalOpen(true);
+  };
+
+  const handleEditCustomer = (customer: CustomersData) => {
+    setSelectedItem(customer); // edição
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedItem(null);
+  };
+
   return (
     <main className="flex flex-col gap-4 md:ml-64 p-4 min-h-screen">
       <BreadcrumbCustom
-        href="/" //href="adm"
+        href="/"
         menu="Administração"
         title="Cadastro de Clientes"
       />
+
       <Card className="flex flex-col flex-1 w-full">
         <CardHeader>
           <div className="flex justify-between items-center">
             <div className="flex flex-row items-center gap-4 justify-center sm:justify-start">
-              <Plus className="cursor-pointer" />
-              <CardTitle className="font-semibold text-2xl">Cadastro de Clientes</CardTitle>
+              <Plus
+                className="cursor-pointer"
+                onClick={handleNewCustomer}
+              />
+              <CardTitle className="font-semibold text-2xl">
+                Cadastro de Clientes
+              </CardTitle>
             </div>
             <div className="flex cursor-pointer hover:text-blue-500">
               <button
@@ -82,6 +92,7 @@ export default function CustomersPage() {
             </div>
           </div>
         </CardHeader>
+
         {mobileFiltersOpen && (
           <CardHeader className="grid md:grid-cols-4 grid-cols-2 gap-4">
             <CardDescription>
@@ -126,66 +137,17 @@ export default function CustomersPage() {
             </CardDescription>
           </CardHeader>
         )}
+
         <CardContent>
-          <Table>
-            <TableCaption>
-              <div className="space-x-2">
-                <select
-                  className="h-8 rounded-md border border-input bg-background px-2 text-sm"
-                  value={perPage}
-                  onChange={(e) => {
-                    const value = Number(e.target.value);
-                    setPerPage(value);
-                    setPage(1); // volta para a primeira página ao mudar quantidade
-                  }}
-                >
-                  <option value={5}>5</option>
-                  <option value={10}>10</option>
-                  <option value={25}>25</option>
-                  <option value={50}>50</option>
-                </select>
-                <span className="text-base">Items por paginas</span>
-              </div>
-            </TableCaption>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-25">Código</TableHead>
-                <TableHead>Nome Fantasia</TableHead>
-                <TableHead>CNPJ/CPF</TableHead>
-                <TableHead>IE</TableHead>
-                <TableHead className="text-center">Situação</TableHead>
-                <TableHead className="text-right">Ações</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {currentItems.map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell>{item.id}</TableCell>
-                  <TableCell>
-                    {item.tradeName.slice(0, 25) + (item.tradeName.length > 25 ? "..." : "")}
-                  </TableCell>
-                  <TableCell>{item.cnpjCpf}</TableCell>
-                  <TableCell>{item.ie}</TableCell>
-                  <TableCell className="text-center">
-                    {item.status ? (
-                      <Badge className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
-                        Ativo
-                      </Badge>
-                    ) : (
-                      <Badge className="bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300">
-                        Inativo
-                      </Badge>
-                    )}
-                  </TableCell>
-                  <TableCell className="flex justify-end items-center gap-2">
-                    <Pencil className="cursor-pointer text-amber-300 hover:text-amber-500" />
-                    <Trash className="cursor-pointer text-red-500 hover:text-red-900" />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <CustomersTable
+            perPage={perPage}
+            setPerPage={setPerPage}
+            setPage={setPage}
+            currentItems={currentItems}
+            onEdit={handleEditCustomer}
+          />
         </CardContent>
+
         <CardFooter className="flex justify-center">
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground whitespace-nowrap">
@@ -199,6 +161,12 @@ export default function CustomersPage() {
           </div>
         </CardFooter>
       </Card>
+
+      <CustomersModal
+        modalOpen={modalOpen}
+        setModalOpen={handleCloseModal}
+        selectedItem={selectedItem}
+      />
     </main>
   );
 }
