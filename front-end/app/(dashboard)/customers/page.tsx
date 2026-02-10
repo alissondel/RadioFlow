@@ -12,10 +12,10 @@ import type { CustomersData } from "@/interfaces/customers-types";
 import { Plus, Funnel, Search } from "lucide-react";
 
 // PAGES CUSTOM
-import { BreadcrumbCustom } from "@/components/breadcrumb";
-import { PaginationCustom } from "@/components/pagination";
-import { CustomersTable } from "@/components/dashboard/customers/table";
-import { CustomersModal } from "@/components/dashboard/customers/modal";
+import { CustomersList } from "@/components/dashboard/customers/list";
+import { CustomersForm } from "@/components/dashboard/customers/form";
+import { CustomBreadcrumb } from "@/components/breadcrumb";
+import { CustomPagination } from "@/components/pagination";
 
 import {
   Card,
@@ -25,11 +25,13 @@ import {
   CardHeader,
   CardDescription,
 } from "@/components/ui/card";
+import CustomersDelete from "@/components/dashboard/customers/delete";
 
 export default function CustomersPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpenDelete, setModalOpenDelete] = useState(false);
   const [selectedItem, setSelectedItem] = useState<CustomersData | null>(null);
 
   // BEGIN PAGINATION
@@ -45,36 +47,47 @@ export default function CustomersPage() {
   const currentItems = Customers.slice(start, end);
   // END PAGINATION
 
-  const handleNewCustomer = () => {
-    setSelectedItem(null);    // novo cadastro
-    setModalOpen(true);
-  };
+  // OPEN E CLOSE MODAL CREATE OR EDIT
+  function handleOpenFormModal(customer: CustomersData | null) {
+    if (customer === null) {
+      setSelectedItem(null);
+      setModalOpen(true);
+    } else {
+      setModalOpen(true);
+      setSelectedItem(customer);
+    }
+  }
 
-  const handleEditCustomer = (customer: CustomersData) => {
-    setSelectedItem(customer); // edição
-    setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
+  function handleCloseModal() {
     setModalOpen(false);
     setSelectedItem(null);
-  };
+  }
+
+  // OPEN E CLOSE MODAL DELETE
+  function handleOpenDeleteModal(customer: CustomersData) {
+    setSelectedItem(customer);
+    setModalOpenDelete(true);
+  }
+
+  function handleDeleteModalClose() {
+    setModalOpenDelete(false);
+    setSelectedItem(null);
+  }
 
   return (
-    <main className="flex flex-col gap-4 md:ml-64 p-4 min-h-screen">
-      <BreadcrumbCustom
+    <main className="flex flex-col gap-4 lg:ml-64 p-4 min-h-screen">
+      <CustomBreadcrumb
         href="/"
         menu="Administração"
         title="Cadastro de Clientes"
       />
-
       <Card className="flex flex-col flex-1 w-full">
         <CardHeader>
           <div className="flex justify-between items-center">
             <div className="flex flex-row items-center gap-4 justify-center sm:justify-start">
               <Plus
                 className="cursor-pointer"
-                onClick={handleNewCustomer}
+                onClick={() => handleOpenFormModal(null)}
               />
               <CardTitle className="font-semibold text-2xl">
                 Cadastro de Clientes
@@ -137,23 +150,22 @@ export default function CustomersPage() {
             </CardDescription>
           </CardHeader>
         )}
-
         <CardContent>
-          <CustomersTable
+          <CustomersList
             perPage={perPage}
             setPerPage={setPerPage}
             setPage={setPage}
             currentItems={currentItems}
-            onEdit={handleEditCustomer}
+            onEdit={handleOpenFormModal}
+            onDelete={handleOpenDeleteModal} // NOVO
           />
         </CardContent>
-
         <CardFooter className="flex justify-center">
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground whitespace-nowrap">
               Página {currentPage} de {totalPages}
             </span>
-            <PaginationCustom
+            <CustomPagination
               currentPage={currentPage}
               totalPages={totalPages}
               onPageChange={setPage}
@@ -161,10 +173,14 @@ export default function CustomersPage() {
           </div>
         </CardFooter>
       </Card>
-
-      <CustomersModal
+      <CustomersForm
         modalOpen={modalOpen}
         setModalOpen={handleCloseModal}
+        selectedItem={selectedItem}
+      />
+      <CustomersDelete
+        modalOpenDelete={modalOpenDelete}
+        setModalOpenDelete={handleDeleteModalClose}
         selectedItem={selectedItem}
       />
     </main>

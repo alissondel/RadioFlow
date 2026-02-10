@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { Sidebar } from '@/components/sidebar';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/theme/theme-provider';
 
 interface AppLayoutProps {
   children: React.ReactNode;

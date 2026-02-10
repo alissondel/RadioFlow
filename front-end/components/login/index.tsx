@@ -1,6 +1,6 @@
 "use client"
 
-import img from '../public/images/Wallpaper-inforadio.png';
+import img from '../../public/images/Wallpaper-inforadio.png';
 import Image from 'next/image';
 
 import { cn } from "@/lib/utils"
@@ -11,6 +11,7 @@ import { Moon, Sun } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+
 import {
   Field,
   FieldDescription,
@@ -30,7 +31,7 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-    const { setTheme } = useTheme()
+  const { setTheme } = useTheme()
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
@@ -67,31 +68,31 @@ export function LoginForm({
               <Field>
                 <Button type="submit" className='cursor-pointer'>Entrar</Button>
               </Field>
-                <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
-                    Selecione o tema de sua preferência
-                </FieldSeparator>
-               <Field className="grid grid-cols-1 gap-4">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="outline" size="icon" className='cursor-pointer'>
-                            <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-                            <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-                            <span className="sr-only">Toggle theme</span>
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuItem onClick={() => setTheme("light")}>
-                            Light
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => setTheme("dark")}>
-                            Dark
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => setTheme("system")}>
-                            System
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </Field>
+              <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
+                Selecione o tema de sua preferência
+              </FieldSeparator>
+              <Field className="grid grid-cols-1 gap-4">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="icon" className='cursor-pointer'>
+                      <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                      <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+                      <span className="sr-only">Toggle theme</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={() => setTheme("light")}>
+                      Light
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("dark")}>
+                      Dark
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("system")}>
+                      System
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </Field>
               <FieldDescription className="text-center">
                 <a href="#">Esqueceu sua senha?</a>
               </FieldDescription>

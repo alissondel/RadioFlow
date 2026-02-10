@@ -8,17 +8,17 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-interface PaginationProps {
+interface CustomPaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
 }
 
-export function PaginationCustom({
+export function CustomPagination({
   currentPage,
   totalPages,
   onPageChange,
-}: PaginationProps) {
+}: CustomPaginationProps) {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const handleChange = (page: number) => {

@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
-export default function ChartOverview() {
+export function ChartOverview() {
   const chartData = [
     { month: "Janeiro", desktop: 186, mobile: 80 },
     { month: "Fevereiro", desktop: 305, mobile: 200 },
@@ -33,7 +33,7 @@ export default function ChartOverview() {
           <CardTitle className="text-lg sm:text-lg dark:text-zinc-50 text-gray-800">
             Overview Chart
           </CardTitle>
-          <DollarSign className="ml-auto w-4 h-4"/>
+          <DollarSign className="ml-auto w-4 h-4" />
         </div>
       </CardHeader>
       <CardContent>
@@ -48,8 +48,8 @@ export default function ChartOverview() {
               tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip content={<ChartTooltipContent />} />
-            <Bar dataKey="desktop" fill={chartConfig.desktop.color} radius={4}/>
-            <Bar dataKey="mobile" fill={chartConfig.mobile.color} radius={4}/>
+            <Bar dataKey="desktop" fill={chartConfig.desktop.color} radius={4} />
+            <Bar dataKey="mobile" fill={chartConfig.mobile.color} radius={4} />
           </BarChart>
         </ChartContainer>
       </CardContent>

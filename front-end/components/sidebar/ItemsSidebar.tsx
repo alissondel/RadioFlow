@@ -1,16 +1,30 @@
 import {
+  Users,
+  Clock,
+  Wallet,
+  Settings,
+  Calendar,
+  UserStar,
   Computer,
+  FileText,
+  Landmark,
+  HandCoins,
   Building2,
+  Newspaper,
+  PiggyBank,
+  Settings2,
   DollarSign,
-  Proportions,
+  UsersRound,
+  ShieldUser,
   CircleCheckBig,
+  BanknoteArrowDown,
 } from "lucide-react"
 
 export const ItemsSidebar = [
   {
     href: '#',
     label: 'Configurações',
-    icon: <Building2 />,
+    icon: <Settings />,
     children: [
       {
         href: '#',
@@ -20,17 +34,17 @@ export const ItemsSidebar = [
       {
         href: '#',
         label: 'Cadastro de Usuários',
-        icon: <Building2 />,
+        icon: <UsersRound />,
       },
       {
         href: '#',
         label: 'Permissões de usuários',
-        icon: <Building2 />,
+        icon: <ShieldUser />,
       },
       {
         href: '#',
         label: 'Parametros do sistema',
-        icon: <Building2 />,
+        icon: <Settings2 />,
       },
     ]
   },
@@ -40,24 +54,19 @@ export const ItemsSidebar = [
     icon: <Computer />,
     children: [
       {
-        href: '#',
+        href: '/customers',
         label: 'Cadastrar Clientes',
-        icon: <Building2 />,
+        icon: <Users />,
       },
       {
         href: '#',
         label: 'Cadastrar Representantes',
-        icon: <Building2 />,
-      },
-      {
-        href: '#',
-        label: 'Cadastrar Contato comercial',
-        icon: <Building2 />,
+        icon: <UserStar />,
       },
       {
         href: '#',
         label: 'Cadastrar Portador',
-        icon: <Building2 />,
+        icon: <Landmark />,
       }
     ],
   },
@@ -69,22 +78,22 @@ export const ItemsSidebar = [
       {
         href: '#',
         label: 'Cadastrar Contrato',
-        icon: <Building2 />,
+        icon: <Wallet />,
       },
       {
         href: '#',
         label: 'Visualizar Distribuição',
-        icon: <Building2 />,
+        icon: <Calendar />,
       },
       {
         href: '#',
         label: 'Emissão de Documentos',
-        icon: <Building2 />,
+        icon: <FileText />,
       },
       {
         href: '#',
-        label: 'Criar horários operacionais',
-        icon: <Building2 />,
+        label: 'Criação de Breaks',
+        icon: <Clock />,
       },
     ]
   },
@@ -96,28 +105,28 @@ export const ItemsSidebar = [
       {
         href: '#',
         label: 'Contas a Receber',
-        icon: <Building2 />,
+        icon: <HandCoins />,
       },
       {
         href: '#',
         label: 'Contas a Pagar',
-        icon: <Building2 />,
+        icon: <BanknoteArrowDown />,
       },
       {
         href: '#',
         label: 'Movimentação Bancária',
-        icon: <Building2 />,
+        icon: <PiggyBank />,
       }
     ]
   },
   {
     href: '#',
     label: 'Relatórios',
-    icon: <Proportions />,
+    icon: <Newspaper />,
     children: [{
       href: '#',
       label: 'Relatórios Gerenciais',
-      icon: <Building2 />,
+      icon: <Newspaper />,
     }]
   }
 ]

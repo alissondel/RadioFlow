@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="320"
+  height="90"
+  viewBox="0 0 320 90"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <!-- fundo transparente: nenhum <rect> -->
+
+  <!-- Ícone de microfone -->
+  <g transform="translate(10,10)" fill="#000000">
+    <!-- corpo -->
+    <rect x="20" y="5" width="24" height="42" rx="12" />
+    <!-- fendas -->
+    <rect x="24" y="9" width="16" height="3" rx="1.5" fill="#ffffff"/>
+    <rect x="24" y="15" width="16" height="3" rx="1.5" fill="#ffffff"/>
+    <rect x="24" y="21" width="16" height="3" rx="1.5" fill="#ffffff"/>
+    <rect x="24" y="27" width="16" height="3" rx="1.5" fill="#ffffff"/>
+    <rect x="24" y="33" width="16" height="3" rx="1.5" fill="#ffffff"/>
+
+    <!-- base arredondada -->
+    <path d="M18 30 a14 14 0 0 0 28 0" fill="none" stroke="#000" stroke-width="4"/>
+
+    <!-- haste e pé -->
+    <rect x="30" y="44" width="8" height="10" rx="3" />
+    <rect x="20" y="56" width="28" height="6" rx="3" />
+  </g>
+
+  <!-- Texto RadioFlow -->
+  <text
+    x="62"
+    y="60"
+    font-family="Poppins, system-ui, -apple-system, 'Segoe UI', sans-serif"
+    font-size="52"
+    font-weight="600"
+  >
+    <tspan fill="#000000">Radio</tspan><tspan fill="#ff7a1a">Flow</tspan>
+  </text>
+</svg>

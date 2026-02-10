@@ -6,13 +6,13 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-interface BreadcrumbCustomProps {
+interface CustomBreadcrumbProps {
   href?: string
   menu: string
   title: string
 }
 
-export function BreadcrumbCustom(props: BreadcrumbCustomProps) {
+export function CustomBreadcrumb(props: CustomBreadcrumbProps) {
   return (
     <Breadcrumb className="flex justify-center items-center md:justify-start" >
       <BreadcrumbList>

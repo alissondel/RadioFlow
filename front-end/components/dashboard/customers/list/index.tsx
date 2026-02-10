@@ -14,21 +14,23 @@ import {
   TableHeader,
 } from "@/components/ui/table";
 
-interface CustomersTableProps {
+interface CustomersListProps {
   perPage: number;
   setPerPage: (key: number) => void;
   setPage: (key: number) => void;
   currentItems: CustomersData[];
   onEdit: (customer: CustomersData) => void;
+  onDelete: (customer: CustomersData) => void;
 }
 
-export function CustomersTable({
+export function CustomersList({
   perPage,
   setPerPage,
   setPage,
   currentItems,
   onEdit,
-}: CustomersTableProps) {
+  onDelete,
+}: CustomersListProps) {
   return (
     <React.Fragment>
       <Table>
@@ -86,7 +88,10 @@ export function CustomersTable({
                   className="cursor-pointer text-amber-300 hover:text-amber-500"
                   onClick={() => onEdit(item)}
                 />
-                <Trash className="cursor-pointer text-red-500 hover:text-red-900" />
+                <Trash
+                  className="cursor-pointer text-red-500 hover:text-red-900"
+                  onClick={() => onDelete(item)}
+                />
               </TableCell>
             </TableRow>
           ))}

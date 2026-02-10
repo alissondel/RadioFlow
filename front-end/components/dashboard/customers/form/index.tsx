@@ -14,17 +14,17 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
-interface CustomersModalProps {
+interface CustomersFormProps {
   modalOpen: boolean;
   setModalOpen: () => void;           // fecha modal (já faz reset no pai)
   selectedItem: CustomersData | null; // null = cadastrar, objeto = editar
 }
 
-export function CustomersModal({
+export function CustomersForm({
   modalOpen,
   setModalOpen,
   selectedItem,
-}: CustomersModalProps) {
+}: CustomersFormProps) {
   const handleClose = () => setModalOpen();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -44,7 +44,6 @@ export function CustomersModal({
               Preencha os dados do cliente e clique em salvar.
             </DialogDescription>
           </DialogHeader>
-
           <FieldGroup>
             <Field>
               <Label htmlFor="tradeName">Nome Fantasia</Label>
@@ -71,10 +70,13 @@ export function CustomersModal({
               />
             </Field>
           </FieldGroup>
-
           <DialogFooter>
             <DialogClose asChild>
-              <Button type="button" variant="outline" onClick={handleClose}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleClose}
+              >
                 Cancelar
               </Button>
             </DialogClose>
